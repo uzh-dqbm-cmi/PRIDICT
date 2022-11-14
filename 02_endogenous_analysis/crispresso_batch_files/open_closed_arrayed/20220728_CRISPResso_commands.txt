@@ -1,0 +1,3 @@
+Batchfile made with window 2 bp upstream of nick and 5bp downstream of flapend (same as PRIDICT)
+
+CRISPRessoBatch --batch_settings OpenClosed_CRISPResso_Batch_Rep1.batch  -p 8 --plot_window_size 5  --exclude_bp_from_left 0 --exclude_bp_from_right 0 --suppress_plots

@@ -1,0 +1,4 @@
+CRISPRessoBatch --batch_settings 20220812_01-NM-PE1_crispresso_batch_amasdef.batch -p 8 --suppress_report --suppress_plots -amas 0 --default_min_aln_score 0
+CRISPRessoBatch --batch_settings 20220812_02-NM-PE2_crispresso_batch_amasdef.batch -p 8 --suppress_report --suppress_plots -amas 0 --default_min_aln_score 0
+CRISPRessoBatch --batch_settings 20220812_03-NM-PE3_crispresso_batch_amasdef.batch -p 8 --suppress_report --suppress_plots -amas 0 --default_min_aln_score 0
+CRISPRessoBatch --batch_settings 20220812_06-NM-C0_crispresso_batch_amasdef.batch -p 8 --suppress_report --suppress_plots -amas 0 --default_min_aln_score 0
