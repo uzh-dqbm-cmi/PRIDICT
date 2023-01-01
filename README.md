@@ -4,9 +4,9 @@
 
 For accessing Supplementary Files, click [here](https://github.com/uzh-dqbm-cmi/PRIDICT/tree/supplementary_files).
 
-Repository containing `python` package for running trained `PRIDICT` (PRIme editing guide RNA preDICTion) models. `prieml` package includes modules to setup and run `PRIDICT` models for predicting `prime editing efficiency and product purity` - [see demo below](#pridict-model-running-demo-%EF%B8%8F).
+Repository containing `python` package for running trained `PRIDICT` (PRIme editing guide RNA preDICTion) models. `prieml` package includes modules to setup and run `PRIDICT` models for predicting `prime editing efficiency and product purity`.
 
-For more info about this research, see our [webapp](https://pridict.it/).
+To run `PRIDICT` online, see our [webapp](https://pridict.it/).
 
 ### Installation
 
@@ -17,7 +17,7 @@ For more info about this research, see our [webapp](https://pridict.it/).
 
 The easiest way to install and manage Python packages on various OS platforms is through [Anaconda](https://docs.anaconda.com/anaconda/install/). Once installed, any package (even if not available on Anaconda channel) could be installed using pip. 
 
-#### On Mac 
+#### On Mac
 
 * Install [Anaconda](https://docs.anaconda.com/anaconda/install/).
 * `git clone` the repo and `cd` into it.
@@ -51,6 +51,9 @@ The easiest way to install and manage Python packages on various OS platforms is
   -  `--sequence`: target sequence to edit in quotes (format: `"xxxxxxxxx(a/g)xxxxxxxxxx"`; minimum of 100 bases up and downstream of brackets are needed)
   -  `--output-dir`: output directory where results are dumped on disk
   -  `--use-5folds`: Use all 5-folds trained models. Default is to use fold-1 model
+  -  `--cores`: Number of cores to use for multiprocessing. Default value 0 uses all available cores.
+  -  `--nicking`: Additionally, design nicking guides for edit (PE3) with DeepSpCas9 prediction.
+  -  `--ngsprimer`: Additionally, design NGS primers for edit based on Primer3 design.
 ```shell
 
 python pridict_pegRNA_design.py manual --sequence-name seq1 --sequence 'GCCTGGAGGTGTCTGGGTCCCTCCCCCACCCGACTACTTCACTCTCTGTCCTCTCTGCCCAGGAGCCCAGGATGTGCGAGTTCAAGTGGCTACGGCCGA(G/C)GTGCGAGGCCAGCTCGGGGGCACCGTGGAGCTGCCGTGCCACCTGCTGCCACCTGTTCCTGGACTGTACATCTCCCTGGTGACCTGGCAGCGCCCAGATGCACCTGCGAACCACCAGAATGTGGCCGC' --output-dir ./predictions_manual
@@ -63,35 +66,14 @@ python pridict_pegRNA_design.py manual --sequence-name seq1 --sequence 'GCCTGGAG
   -  `--output-fname`: output filename used for the saved results
   -  `--combine-results`: Compile all results in one dataframe
   -  `--use-5folds`: Use all 5-folds trained models. Default is to use fold-1 model
+  -  `--cores`: Number of cores to use for multiprocessing. Default value 0 uses all available cores.
+  -  `--nicking`: Additionally, design nicking guides for edit (PE3) with DeepSpCas9 prediction.
+  -  `--ngsprimer`: Additionally, design NGS primers for edit based on Primer3 design.
 ```shell
 
  python pridict_pegRNA_design.py batch --input-dir ./input/ --input-fname batch_example_file.csv --output-dir ./predictions_batch --output-fname batchseqs
 
 ``` 
-
-### PRIDICT model running demo 🏃‍♀️
-
-We provide two `notebooks` that illustrate the use of two `PRIDICT` models on `processed datasets`: one trained on [our library]() and another using [`Kim et al. library`](https://doi.org/10.1038/s41587-020-0677-y) under `notebooks` folder:
-   - [`PRIDICT` trained on `our library` & tested on `Kim et al. library`](/notebooks/Prieml_outcomedistrib_trained_schwank_predict_hyongbum.ipynb)
-
-### OS & Packages' version
-
-The models were trained, tested and ran on Linux machine `Ubuntu 18.04.3 LTS` with one `Tesla P4 GPU` support.
-The version of the `required` packages used in `setup.py` were:
-* `numpy` &gt;=  `'1.19.2'`
-* `scipy` &gt;= `'1.5.3'`
-* `pandas` &gt;= `'1.0.1'`
-* `scikit-learn` &gt;= `'0.23.2'`
-* `torch` &gt;= `'1.7.1'`
-  * `cudatoolkit=10.1`
-* `matplotlib` &gt;= `'3.3.4'`
-* `seaborn` &gt;= `'0.11.1'`
-* `prettytable` &gt;= `'2.1.0'`
-* `tqdm` &gt;= `'4.64.0'`
-
-### Webapp 🕸️
-
-A running instance of the package for `optimizing prime editing guide RNA design` and `predicting prime editing efficiency and product purity` can be accessed at this [link](https://pridict.it/).
 
 ### Citation
 
@@ -100,7 +82,7 @@ If you find our work is useful in your research, please cite the following paper
 > @article {Mathis et al.,  
 	author = {Mathis, Nicolas and Allam, Ahmed and Kissling, Lucas and  Marquart, Kim Fabiano and Schmidheini, Lukas and Solari, Cristina and Balázs, Zsolt and Krauthammer, Michael and Schwank, Gerald},  
 	title = {Predicting prime editing efficiency and product purity by deep learning},  
-	year = {2022},  
+	year = {2023},  
 	doi = {},  
 	URL = {},  
 	eprint = {},  
