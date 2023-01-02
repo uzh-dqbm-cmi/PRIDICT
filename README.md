@@ -27,6 +27,11 @@ The easiest way to install and manage Python packages on various OS platforms is
     conda env create -f pridict_linux.yml # pridict_mac.yml for macbook 
     # activate the created environment
     conda activate pridict
+    
+    	### ONLY FOR M1 Mac you need to additionally run the following conda install command (tensorflow): 
+    	conda install conda-forge::tensorflow
+    	###
+	
     # run desired PRIDICT command (manual or batch mode, described below)
     python pridict_pegRNA_design.py manual --sequence-name seq1 --sequence 'GCCTGGAGGTGTCTGGGTCCCTCCCCCACCCGACTACTTCACTCTCTGTCCTCTCTGCCCAGGAGCCCAGGATGTGCGAGTTCAAGTGGCTACGGCCGA(G/C)GTGCGAGGCCAGCTCGGGGGCACCGTGGAGCTGCCGTGCCACCTGCTGCCACCTGTTCCTGGACTGTACATCTCCCTGGTGACCTGGCAGCGCCCAGATGCACCTGCGAACCACCAGAATGTGGCCGC'
     # results are stored in 'predictions' folder
@@ -36,7 +41,6 @@ The easiest way to install and manage Python packages on various OS platforms is
     ```shell
     # open Terminal/Command Line
     # navigate into repository
-    cd PRIDICT
     # activate the created environment
     conda activate pridict
     # run desired PRIDICT command (manual or batch mode, described below)
