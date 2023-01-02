@@ -10,41 +10,40 @@ To run `PRIDICT` online, see our [webapp](https://pridict.it/).
 
 --------------------------
 
-### Installation
-
-* `git clone` the repo and `cd` into it.
-* Run `pip install -e .` to install the repo's python package.
-
-### Using Anaconda (optional) 🐍
+### Installation using Anaconda (Linux and Mac OS) 🐍
+!!! `PRIDICT` can only be installed on `Linux` and `Mac OS` since `ViennaRNA` package is not available for `Windows` !!!
 
 The easiest way to install and manage Python packages on various OS platforms is through [Anaconda](https://docs.anaconda.com/anaconda/install/). Once installed, any package (even if not available on Anaconda channel) could be installed using pip. 
 
-#### On Mac
-
 * Install [Anaconda](https://docs.anaconda.com/anaconda/install/).
-* `git clone` the repo and `cd` into it.
-* Start a terminal and run
-
+* Start a terminal and run:
     ```shell
-    # create an environment
-    conda create --name pridict
-    # activate the created environment (pridict)
+    # clone PRIDICT repository
+    git clone https://github.com/uzh-dqbm-cmi/PRIDICT.git
+    # navigate into repository
+    cd PRIDICT
+    # create conda environment and install dependencies for PRIDICT (only has to be done before first run/install)
+    conda env create -f pridict.yml
+    # activate the created environment
     conda activate pridict
-    # install anaconda
-    conda install -c anaconda python=3.8.5
-    # update all installed packages
-    conda update -y --all
-    # install pytorch 
-    # Note cudatoolkit version depends on the version installed on your device
-    # if there is no GPU run this command
-    # conda install pytorch torchvision -c pytorch
-    # see https://pytorch.org/
-    conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
-    conda clean -ya
-    # install prieml package (i.e. this package)
-    pip install -e .
+    # run desired PRIDICT command (manual or batch mode, described below)
+    # for running batch mode, first create batch file and copy it into 'input' folder
+    # batch results will be stored in 'predictions' folder
+    python pridict_pegRNA_design.py batch --input-fname batch_example_file.csv --output-fname batchseqs
     ```
-* Now we are ready to use the package with the trained `PRIDICT` models for prime editing prediction.
+
+* `PRIDICT` environment only has to be installed once. When already installed, follow the following commands to use `PRIDICT` again:
+    ```shell
+    # open Terminal/Command Line
+    # navigate into repository
+    cd PRIDICT
+    # activate the created environment
+    conda activate pridict
+    # run desired PRIDICT command (manual or batch mode, described below)
+    # for running batch mode, first create batch file and copy it into 'input' folder
+    # batch results will be stored in 'predictions' folder
+    python pridict_pegRNA_design.py batch --input-fname batch_example_file.csv --output-fname batchseqs
+    ```
 
 --------------------------
 
@@ -78,7 +77,7 @@ python pridict_pegRNA_design.py manual --sequence-name seq1 --sequence 'GCCTGGAG
   -  `--ngsprimer`: Additionally, design NGS primers for edit based on Primer3 design.
 ```shell
 
- python pridict_pegRNA_design.py batch --input-dir ./input/ --input-fname batch_example_file.csv --output-dir ./predictions_batch --output-fname batchseqs
+ python pridict_pegRNA_design.py batch --input-fname batch_example_file.csv --output-fname batchseqs
 
 ``` 
 --------------------------
