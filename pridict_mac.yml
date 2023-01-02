@@ -45,8 +45,6 @@ dependencies:
   - python=3.8.5=h26836e1_1
   - python-dateutil=2.8.2=pyhd3eb1b0_0
   - python_abi=3.8=2_cp38
-									 
-						  
   - pytz=2022.1=py38hecd8cb5_0
   - readline=8.1.2=hca72f7f_1
   - setuptools=61.2.0=py38hecd8cb5_0
