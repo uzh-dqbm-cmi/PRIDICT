@@ -199,11 +199,11 @@ def create_datatensor(data_df, proc_seq_init_df, num_init_cols,  proc_seq_mut_df
     X_init_pbs[ntoken_cond] = blank_annot_token
     X_init_rt[ntoken_cond] = blank_annot_token
 
-    print('X_init_nucl.unique():', X_init_nucl.unique())
-    print('ntoken_cond:', ntoken_cond.unique())
-    print('X_init_proto:', X_init_proto.unique())
-    print('X_init_pbs:', X_init_pbs.unique())
-    print('X_init_rt:', X_init_rt.unique())
+    # print('X_init_nucl.unique():', X_init_nucl.unique())
+    # print('ntoken_cond:', ntoken_cond.unique())
+    # print('X_init_proto:', X_init_proto.unique())
+    # print('X_init_pbs:', X_init_pbs.unique())
+    # print('X_init_rt:', X_init_rt.unique())
 
     # process mutation sequences
     if 'start_seq' in proc_seq_mut_df:
@@ -239,10 +239,10 @@ def create_datatensor(data_df, proc_seq_init_df, num_init_cols,  proc_seq_mut_df
     ntoken_cond = (X_mut_nucl == blank_nucl_token)
     X_mut_pbs[ntoken_cond] = blank_annot_token
     X_mut_rt[ntoken_cond] = blank_annot_token
-    print('X_mut_nucl.unique():', X_mut_nucl.unique())
-    print('ntoken_cond:', ntoken_cond.unique())
-    print('X_mut_pbs:', X_mut_pbs.unique())
-    print('X_mut_rt:', X_mut_rt.unique())
+    # print('X_mut_nucl.unique():', X_mut_nucl.unique())
+    # print('ntoken_cond:', ntoken_cond.unique())
+    # print('X_mut_pbs:', X_mut_pbs.unique())
+    # print('X_mut_rt:', X_mut_rt.unique())
 
     # harmonize the size of matrices above
     max_num_cols = np.max([end_init_colindx+1, end_mut_colindx+1])
@@ -275,7 +275,7 @@ def create_datatensor(data_df, proc_seq_init_df, num_init_cols,  proc_seq_mut_df
     if len(y_ref):
         # y_score = torch.from_numpy(data_df['y'].values).reshape(-1,1)
         ycols = [tcol for tcol in y_ref if tcol in data_df]
-        print('ycols:', ycols)
+        # print('ycols:', ycols)
         y_score = torch.from_numpy(data_df[ycols].values)
     else:
         y_score = None

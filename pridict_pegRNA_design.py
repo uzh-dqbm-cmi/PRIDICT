@@ -44,10 +44,12 @@ import pandas as pd
 import os
 import time
 import torch.multiprocessing as mp
+# os.environ['KMP_DUPLICATE_LIB_OK']='True'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 
 
 
-# TODO: check if this is necessary
+# # TODO: check if this is necessary
 mp.set_start_method("spawn", force=True)
 
 
@@ -69,8 +71,7 @@ elif usecase == 'commandline':
     import argparse
     import prieml
     from prieml.predict_outcomedistrib import *
-    from prieml.utilities import get_device
-    from prieml.utilities import create_directory
+    from prieml.utilities import get_device, create_directory
     from DeepCas9_TestCode import runprediction
     
 
@@ -488,8 +489,8 @@ def pegRNAfinder(dfrow, models_list, queue, pindx, pred_dir, nicking, ngsprimer,
             sequence = dfrow['editseq'] # string
             name = dfrow['sequence_name']
 
-        print('seq:', sequence, type(sequence))
-        print('name:', name, type(name))
+        # print('seq:', sequence, type(sequence))
+        # print('name:', name, type(name))
 
         start_time = time.time()
         original_base, edited_base, original_seq, edited_seq, editposition_left, editposition_right, mutation_type, correction_length, basebefore_temp, baseafter_temp = primesequenceparsing(
@@ -931,7 +932,7 @@ def fix_mkl_issue():
     a, b, __ = mkl.__version__.split('.')
     if int(a) <=2 and int(b)<=3:
         print('setting MKL_THREADING_LAYER = GNU')
-        os.environ['MKL_THREADING_LAYER'] = 'GNU' 
+        os.environ['MKL_THREADING_LAYER'] = 'GNU'
 
 def run_processing_parallel(df, pred_dir, fname, num_proc_arg, nicking, ngsprimer, run_ids=[1], combine_dfs=True):
 
@@ -951,9 +952,10 @@ def run_processing_parallel(df, pred_dir, fname, num_proc_arg, nicking, ngsprime
     models_lst = load_pridict_model(run_ids = run_ids)
 
     for q_i in range(min(num_proc, num_rows)):
-        print('q_i:', q_i)
+        # print('q_i:', q_i)
         row = df.iloc[q_i] # slice a row
         seqnames_lst.append(row['sequence_name'])
+        print('processing sequence:', seqnames_lst[-1])
         q_process = create_q_process(dfrow=row,
                                      models_list=models_lst,
                                      queue=queue,
@@ -968,13 +970,14 @@ def run_processing_parallel(df, pred_dir, fname, num_proc_arg, nicking, ngsprime
     for q_i in range(num_rows):
         join_q_process(q_processes[q_i])
         released_proc_num = queue.get()
-        print("released_process_num:", released_proc_num)
+        # print("released_process_num:", released_proc_num)
         q_processes[q_i] = None # free resources ;)
         if(spawned_processes < num_rows):
             q_i_upd = q_i + num_proc
-            print('q_i:', q_i, 'q_i_updated:', q_i_upd)
+            # print('q_i:', q_i, 'q_i_updated:', q_i_upd)
             row = df.iloc[q_i_upd]
             seqnames_lst.append(row['sequence_name'])
+            print('processing sequence:', seqnames_lst[-1])
             q_process = create_q_process(dfrow=row, 
                                          models_list=models_lst,
                                          queue=queue,
@@ -1106,7 +1109,7 @@ if __name__ == "__main__":
             out_dir = create_directory(args.output_dir, os.getcwd())
         else:
             out_dir = os.path.join(os.path.dirname(__file__), args.output_dir)
-        print('out_dir:', out_dir)
+        print('output directory:', out_dir)
 
         fname = f'{args.sequence_name}'
         if args.use_5folds:
@@ -1138,7 +1141,7 @@ if __name__ == "__main__":
             inp_dir = create_directory(args.input_dir, os.getcwd())
         else:
             inp_dir = os.path.join(os.path.dirname(__file__), args.input_dir)
-        print('inp_dir:', inp_dir)
+        print('input directory:', inp_dir)
 
         inp_fname = args.input_fname
 
@@ -1146,7 +1149,7 @@ if __name__ == "__main__":
             out_dir = create_directory(args.output_dir, os.getcwd())
         else:
             out_dir = os.path.join(os.path.dirname(__file__), args.output_dir)
-        print('out_dir:', out_dir)
+        print('output directory:', out_dir)
 
         if args.use_5folds:
             run_ids = list(range(5))

@@ -11,7 +11,7 @@ To run `PRIDICT` online, see our [webapp](https://pridict.it/).
 --------------------------
 
 ### Installation using Anaconda (Linux and Mac OS) 🐍
-!!! `PRIDICT` can only be installed on `Linux` and `Mac OS` since `ViennaRNA` package is not available for `Windows` !!!
+📣 `PRIDICT` can only be installed on `Linux` and `Mac OS` since `ViennaRNA` package is not available for `Windows` 📣
 
 The easiest way to install and manage Python packages on various OS platforms is through [Anaconda](https://docs.anaconda.com/anaconda/install/). Once installed, any package (even if not available on Anaconda channel) could be installed using pip. 
 
@@ -23,7 +23,8 @@ The easiest way to install and manage Python packages on various OS platforms is
     # navigate into repository
     cd PRIDICT
     # create conda environment and install dependencies for PRIDICT (only has to be done before first run/install)
-    conda env create -f pridict.yml
+    # use pridict_linux for linux machine or pridict_mac for a macbook
+    conda env create -f pridict_linux.yml # pridict_mac.yml for macbook 
     # activate the created environment
     conda activate pridict
     # run desired PRIDICT command (manual or batch mode, described below)

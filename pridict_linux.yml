@@ -1,0 +1,27 @@
+name: pridict
+channels:
+  - bioconda
+  - anaconda
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - pip
+  - python>=3.8.5
+  - numpy>=1.22.1
+  - scipy>=1.7.3
+  - pandas>=1.4.3
+  - pytorch>=1.10.2
+  - matplotlib
+  - seaborn
+  - prettytable>=3.5.0
+  - tqdm>=4.64.1
+  - biopython>=1.78
+  - primer3-py>=0.6.1
+  - viennarna=2.5.1
+  # - pytorch-mutex=1.0
+  - tensorflow-cpu==2.10.0
+  - pip:
+    - -e .
+
+
