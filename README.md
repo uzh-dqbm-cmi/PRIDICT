@@ -28,6 +28,7 @@ The easiest way to install and manage Python packages on various OS platforms is
     conda activate pridict
     # run desired PRIDICT command (manual or batch mode, described below)
     python pridict_pegRNA_design.py manual --sequence-name seq1 --sequence 'GCCTGGAGGTGTCTGGGTCCCTCCCCCACCCGACTACTTCACTCTCTGTCCTCTCTGCCCAGGAGCCCAGGATGTGCGAGTTCAAGTGGCTACGGCCGA(G/C)GTGCGAGGCCAGCTCGGGGGCACCGTGGAGCTGCCGTGCCACCTGCTGCCACCTGTTCCTGGACTGTACATCTCCCTGGTGACCTGGCAGCGCCCAGATGCACCTGCGAACCACCAGAATGTGGCCGC'
+    # results are stored in 'predictions' folder
     ```
 
 * `PRIDICT` environment only has to be installed once. When already installed, follow the following commands to use `PRIDICT` again:
@@ -39,6 +40,7 @@ The easiest way to install and manage Python packages on various OS platforms is
     conda activate pridict
     # run desired PRIDICT command (manual or batch mode, described below)
     python pridict_pegRNA_design.py manual --sequence-name seq1 --sequence 'GCCTGGAGGTGTCTGGGTCCCTCCCCCACCCGACTACTTCACTCTCTGTCCTCTCTGCCCAGGAGCCCAGGATGTGCGAGTTCAAGTGGCTACGGCCGA(G/C)GTGCGAGGCCAGCTCGGGGGCACCGTGGAGCTGCCGTGCCACCTGCTGCCACCTGTTCCTGGACTGTACATCTCCCTGGTGACCTGGCAGCGCCCAGATGCACCTGCGAACCACCAGAATGTGGCCGC'
+    # results are stored in 'predictions' folder
     ```
 
 --------------------------
