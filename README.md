@@ -27,9 +27,7 @@ The easiest way to install and manage Python packages on various OS platforms is
     # activate the created environment
     conda activate pridict
     # run desired PRIDICT command (manual or batch mode, described below)
-    # for running batch mode, first create batch file and copy it into 'input' folder
-    # batch results will be stored in 'predictions' folder
-    python pridict_pegRNA_design.py batch --input-fname batch_example_file.csv --output-fname batchseqs
+    python pridict_pegRNA_design.py manual --sequence-name seq1 --sequence 'GCCTGGAGGTGTCTGGGTCCCTCCCCCACCCGACTACTTCACTCTCTGTCCTCTCTGCCCAGGAGCCCAGGATGTGCGAGTTCAAGTGGCTACGGCCGA(G/C)GTGCGAGGCCAGCTCGGGGGCACCGTGGAGCTGCCGTGCCACCTGCTGCCACCTGTTCCTGGACTGTACATCTCCCTGGTGACCTGGCAGCGCCCAGATGCACCTGCGAACCACCAGAATGTGGCCGC'
     ```
 
 * `PRIDICT` environment only has to be installed once. When already installed, follow the following commands to use `PRIDICT` again:
@@ -40,9 +38,7 @@ The easiest way to install and manage Python packages on various OS platforms is
     # activate the created environment
     conda activate pridict
     # run desired PRIDICT command (manual or batch mode, described below)
-    # for running batch mode, first create batch file and copy it into 'input' folder
-    # batch results will be stored in 'predictions' folder
-    python pridict_pegRNA_design.py batch --input-fname batch_example_file.csv --output-fname batchseqs
+    python pridict_pegRNA_design.py manual --sequence-name seq1 --sequence 'GCCTGGAGGTGTCTGGGTCCCTCCCCCACCCGACTACTTCACTCTCTGTCCTCTCTGCCCAGGAGCCCAGGATGTGCGAGTTCAAGTGGCTACGGCCGA(G/C)GTGCGAGGCCAGCTCGGGGGCACCGTGGAGCTGCCGTGCCACCTGCTGCCACCTGTTCCTGGACTGTACATCTCCCTGGTGACCTGGCAGCGCCCAGATGCACCTGCGAACCACCAGAATGTGGCCGC'
     ```
 
 --------------------------
