@@ -11,7 +11,7 @@ To run `PRIDICT` online, see our [webapp](https://pridict.it/).
 --------------------------
 
 ### Installation using Anaconda (Linux and Mac OS) 🐍
-!!! `PRIDICT` can only be installed on `Linux` and `Mac OS` since `ViennaRNA` package is not available for `Windows` !!!
+📣 `PRIDICT` can only be installed on `Linux` and `Mac OS` since `ViennaRNA` package is not available for `Windows` 📣
 
 The easiest way to install and manage Python packages on various OS platforms is through [Anaconda](https://docs.anaconda.com/anaconda/install/). Once installed, any package (even if not available on Anaconda channel) could be installed using pip. 
 
@@ -23,9 +23,15 @@ The easiest way to install and manage Python packages on various OS platforms is
     # navigate into repository
     cd PRIDICT
     # create conda environment and install dependencies for PRIDICT (only has to be done before first run/install)
-    conda env create -f pridict.yml
+    # use pridict_linux for linux machine or pridict_mac for a macbook
+    conda env create -f pridict_linux.yml # pridict_mac.yml for macbook 
     # activate the created environment
     conda activate pridict
+    
+    	### ONLY FOR M1 Mac you need to additionally run the following conda install command (tensorflow): 
+    	conda install conda-forge::tensorflow
+    	###
+	
     # run desired PRIDICT command (manual or batch mode, described below)
     python pridict_pegRNA_design.py manual --sequence-name seq1 --sequence 'GCCTGGAGGTGTCTGGGTCCCTCCCCCACCCGACTACTTCACTCTCTGTCCTCTCTGCCCAGGAGCCCAGGATGTGCGAGTTCAAGTGGCTACGGCCGA(G/C)GTGCGAGGCCAGCTCGGGGGCACCGTGGAGCTGCCGTGCCACCTGCTGCCACCTGTTCCTGGACTGTACATCTCCCTGGTGACCTGGCAGCGCCCAGATGCACCTGCGAACCACCAGAATGTGGCCGC'
     # results are stored in 'predictions' folder
@@ -35,7 +41,6 @@ The easiest way to install and manage Python packages on various OS platforms is
     ```shell
     # open Terminal/Command Line
     # navigate into repository
-    cd PRIDICT
     # activate the created environment
     conda activate pridict
     # run desired PRIDICT command (manual or batch mode, described below)
@@ -88,7 +93,7 @@ If you find our work is useful in your research, please cite the following paper
 	author = {Mathis, Nicolas and Allam, Ahmed and Kissling, Lucas and  Marquart, Kim Fabiano and Schmidheini, Lukas and Solari, Cristina and Balázs, Zsolt and Krauthammer, Michael and Schwank, Gerald},  
 	title = {Predicting prime editing efficiency and product purity by deep learning},  
 	year = {2023},  
-	doi = {},  
+	doi = {https://doi.org/10.1038/s41587-022-01613-7},  
 	URL = {},  
 	eprint = {},  
 	journal = {}  
