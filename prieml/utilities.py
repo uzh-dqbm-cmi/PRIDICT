@@ -212,6 +212,7 @@ def get_cuda_device_stats(device):
     print('max memory cached  on device:', torch.cuda.max_memory_cached(device)/(1024**3), 'GB')
 
 def compute_harmonic_mean(a, b):
+    assert (a >= 0) & (b>=0), 'one (or both) of the arguments is negative!'
     if a==0 and b==0:
         return 0.
     return 2*a*b/(a+b)

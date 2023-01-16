@@ -1,5 +1,5 @@
 ## inspired by the Attributionprior repository <link>
-## developed by orizuru
+## developed by orizuru (= orisenbazuru 😬)
 import torch
 from torch.autograd import grad
 from torch.utils.data import DataLoader

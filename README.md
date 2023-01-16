@@ -55,7 +55,7 @@ The easiest way to install and manage Python packages on various OS platforms is
   -  `--sequence-name`: name of the sequene (i.e. unique id for the sequence)
   -  `--sequence`: target sequence to edit in quotes (format: `"xxxxxxxxx(a/g)xxxxxxxxxx"`; minimum of 100 bases up and downstream of brackets are needed)
   ####  Optional:
-  -  `--output-dir`: output directory where results are dumped on disk (default: "./predictions")
+  -  `--output-dir`: output directory where results are dumped on disk (default: `./predictions`)
   -  `--use-5folds`: Use all 5-folds trained models. Default is to use fold-1 model
   -  `--cores`: Number of cores to use for multiprocessing. Default value 0 uses all available cores.
   -  `--nicking`: Additionally, design nicking guides for edit (PE3) with DeepSpCas9 prediction.
@@ -71,7 +71,7 @@ python pridict_pegRNA_design.py manual --sequence-name seq1 --sequence 'GCCTGGAG
   -  `--input-fname`: input file name - name of csv file that has two columns [`editseq`, `sequence_name`]. See `batch_template.csv` in the `./input` folder
   ####  Optional:
   -  `--input-dir` : directory where the input csv file is found on disk
-  -  `--output-dir`: directory on disk where to dump results (default: "./predictions")
+  -  `--output-dir`: directory on disk where to dump results (default: `./predictions`)
   -  `--output-fname`: output filename used for the saved results
   -  `--combine-results`: Compile all results in one dataframe
   -  `--use-5folds`: Use all 5-folds trained models. Default is to use fold-1 model
