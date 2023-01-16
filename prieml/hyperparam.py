@@ -80,8 +80,8 @@ def get_hyperparam_options(prob_interval_truemax, prob_estim, model_name, random
     if(num_trials > len(hyperparam_space)):
         num_trials = len(hyperparam_space)
     indxs = np.random.choice(len(hyperparam_space), size=num_trials, replace=False)
-    if(model_name == 'PE_MemTrf'):
-        hyperconfig_class = MemTrfHyperparamConfig
+    if(model_name == 'PE_RNN'):
+        hyperconfig_class = RNNHyperparamConfig
     # encoder_dim, num_layers, encoder_approach, attn_method, p_dropout, l2_reg, batch_size, num_epochs
     return [hyperconfig_class(*hyperparam_space[indx]) for indx in indxs]
 

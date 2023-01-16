@@ -101,8 +101,9 @@ class SeqBaselineGenerator:
         # for now we can ignore it as it does not have any influence 
         # row['correction_type_categ'] = 'NotApp' 
         row['Correction_Type'] = 'NotApp'
-        if 'Editing_Position_Ahmed' in row:
-            row['Editing_Position_Ahmed'] = -1
+        # comment this out in case of issues -- legacy support 😬
+        # if 'Editing_Position_Ahmed' in row:
+        #     row['Editing_Position_Ahmed'] = -1
             
         row_df = pd.DataFrame(row.values.reshape(1,-1), columns=row.index)
         row_df = row_df.astype(df.dtypes.to_dict())
