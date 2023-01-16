@@ -93,8 +93,7 @@ If you find our work is useful in your research, please cite the following paper
 	author = {Mathis, Nicolas and Allam, Ahmed and Kissling, Lucas and  Marquart, Kim Fabiano and Schmidheini, Lukas and Solari, Cristina and Balázs, Zsolt and Krauthammer, Michael and Schwank, Gerald},  
 	title = {Predicting prime editing efficiency and product purity by deep learning},  
 	year = {2023},  
-	doi = {https://doi.org/10.1038/s41587-022-01613-7},  
-	URL = {},  
-	eprint = {},  
-	journal = {}  
+	doi = {10.1038/s41587-022-01613-7},  
+	URL = { https://www.nature.com/articles/s41587-022-01613-7 },  
+	journal = {Nature Biotechnology}  
 }
