@@ -24,7 +24,9 @@ The easiest way to install and manage Python packages on various OS platforms is
     cd PRIDICT
     # create conda environment and install dependencies for PRIDICT (only has to be done before first run/install)
     # use pridict_linux for linux machine or pridict_mac for a macbook
-    conda env create -f pridict_linux.yml # pridict_mac.yml for macbook 
+    conda env create -f pridict_linux.yml # pridict_mac.yml for macbook
+    # note that this step ('Solving environment:') can take a while (sometimes up to 45 min), but should eventually succeed.
+    
     # activate the created environment
     conda activate pridict
     
