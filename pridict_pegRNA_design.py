@@ -154,7 +154,7 @@ def primesequenceparsing(sequence: str) -> object:
     if edited_base == '-':
         edited_seq = five_prime_seq + three_prime_seq
     else:
-        edited_seq = five_prime_seq + edited_base + three_prime_seq
+        edited_seq = five_prime_seq + edited_base.lower() + three_prime_seq
 
     if isDNA(edited_seq) and isDNA(original_seq):  # check whether sequences only contain AGCT
         pass
@@ -186,7 +186,7 @@ def editorcharacteristics(editor):
 def isDNA(sequence):
     """ Check whether sequence contains only DNA bases. """
     onlyDNA = True
-    diff_set = set(sequence) - set('ACTG')
+    diff_set = set(sequence) - set('ACTGatgc')
     if diff_set:
         onlyDNA = False
         print('Non-DNA bases detected. Please use ATGC.')
@@ -606,36 +606,47 @@ def pegRNAfinder(dfrow, models_list, queue, pindx, pred_dir, nicking, ngsprimer,
             X = [x for x in X if 25 <= x < len(
                 original_seq) - 4]  # only use protospacer which have sufficient margin for 30bp sequence stretch
             
+            # find PAMs in edited sequence for nicking guides
+            editedstrand_PAMlist = [m.start() for m in re.finditer(PAM, edited_seq.upper())]
+            editedstrand_PAMlist = [x for x in editedstrand_PAMlist if 25 <= x < len(edited_seq) - 4]  # only use protospacer which have sufficient margin for 30bp sequence stretch
+
             if X:
                 xindex = 0
+                editedstrandPAMindex = 0
+                for editedstrandPAM in editedstrand_PAMlist:
+                    editedPAM_int = editedstrand_PAMlist[editedstrandPAMindex] - editposition - numberN
+                    editedstrandPAMindex = editedstrandPAMindex + 1
+                    editedPAM = editedPAM_int + editposition + numberN
+                    editedstart = editedPAM + (len(PAM) - 7) - 3
+                    editednickposition = editedstart - editposition
+                    editednickprotospacer, editednickdeepcas9 = nickingguide(edited_seq, editedstrandPAM, protospacerlength)
+                    nickingtargetstrandlist.append(target_strand)
+                    nickingpositiontoeditlist.append(editednickposition)
+                    nickingprotospacerlist.append(editednickprotospacer)
+                    nickingdeepcas9list.append(editednickdeepcas9)
+                    if editednickprotospacer[0] != 'G':
+                        editednickprotospacer = 'g'+editednickprotospacer
+                    nicking_oligo_FW.append('cacc' + editednickprotospacer)
+                    nicking_oligo_RV.append('aaac' + str(Seq(editednickprotospacer).reverse_complement()))
+                    pe3bwindowlist = list(range(-5, 17))
+                    pe3bwindowlist.remove(-3)
+                    #print(pe3bwindowlist)
+                    #print(editednickposition)
+                    if editednickposition in pe3bwindowlist: # -5 or -4 for NGG or -2 to 14
+                        nickingpe3blist.append('PE3b')
+                        if editednickposition in [-5,-4]:
+                            nickingPAMdisruptlist.append('Nicking_PAM_disrupt')
+                        else:
+                            nickingPAMdisruptlist.append('No_nicking_PAM_disrupt')
+                    else:
+                        nickingpe3blist.append('No_PE3b')
+                        nickingPAMdisruptlist.append('No_nicking_PAM_disrupt')
+
                 for xvalues in X:
                     X_int = X[xindex] - editposition - numberN
                     xindex = xindex + 1
                     XPAM = X_int + editposition + numberN
                     start = XPAM + (len(PAM) - 7) - 3
-                    nickposition = start - editposition
-
-                    nickprotospacer, nickdeepcas9 = nickingguide(original_seq, xvalues, protospacerlength)
-                    nickingtargetstrandlist.append(target_strand)
-                    nickingpositiontoeditlist.append(nickposition)
-                    nickingprotospacerlist.append(nickprotospacer)
-                    nickingdeepcas9list.append(nickdeepcas9)
-                    if nickprotospacer[0] != 'G':
-                        nickprotospacer = 'g'+nickprotospacer
-                    nicking_oligo_FW.append('cacc' + nickprotospacer)
-                    nicking_oligo_RV.append('aaac' + str(Seq(nickprotospacer).reverse_complement()))
-                    if nickposition in range(-5,
-                                            protospacerlength - 2):  # check whether nicking guide is flanking the edit (equals PE3b edit)
-                        nickingpe3blist.append('PE3b')
-                        if nickposition in range(-5, -3):  # check whether nicking guide PAM is part of the edit
-                            nickingPAMdisruptlist.append('Nicking_PAM_disrupt')
-                        else:
-                            nickingPAMdisruptlist.append('No_nicking_PAM_disrupt')
-                        # if X_int in range(protospacerlength)
-                    else:
-                        nickingpe3blist.append('No_PE3b')
-                        nickingPAMdisruptlist.append('No_nicking_PAM_disrupt')
-
                     if X_int in editingWindow:
                         # start coordinates of RT correspond to nick position within protospacer (based on start of input sequence)
                         RTseq = {}
