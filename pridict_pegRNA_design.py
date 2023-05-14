@@ -104,6 +104,7 @@ def primesequenceparsing(sequence: str) -> object:
     sequence = sequence.replace(' ','')
     sequence = sequence.upper()
     if sequence.count('(') != 1:
+        print(sequence)
         print('More or less than one bracket found in sequence! Please check your input sequence.')
         raise ValueError
 
@@ -114,6 +115,12 @@ def primesequenceparsing(sequence: str) -> object:
     if '/' in sequence_set:
         original_base = sequence.split('/')[0].split('(')[1]
         edited_base = sequence.split('/')[1].split(')')[0]
+
+        # edit flanking bases should *not* be included in the brackets
+        if (original_base[0] == edited_base[0]) or (original_base[-1] == edited_base[-1]):
+            print(sequence)
+            print('Flanking bases should not be included in brackets! Please check your input sequence.')
+            raise ValueError
     elif '+' in sequence_set:  #insertion
         original_base = '-'
         edited_base = sequence.split('+')[1].split(')')[0]
@@ -128,6 +135,7 @@ def primesequenceparsing(sequence: str) -> object:
             mutation_type = 'Insertion'
             correction_length = len(edited_base)
         else:
+            print(sequence)
             raise ValueError
     else:
         original_seq = five_prime_seq + original_base + three_prime_seq
@@ -139,6 +147,8 @@ def primesequenceparsing(sequence: str) -> object:
                 mutation_type = '1bpReplacement'
                 correction_length = len(original_base)
             else:
+                print(sequence)
+                print('Non DNA bases found in sequence! Please check your input sequence.')
                 raise ValueError
         elif len(original_base) > 1 or len(edited_base) > 1:
             if isDNA(original_base) and isDNA(edited_base):  # check if only AGCT is in bases
@@ -147,8 +157,12 @@ def primesequenceparsing(sequence: str) -> object:
                         edited_base):  # only calculate correction length if replacement does not contain insertion/deletion
                     correction_length = len(original_base)
                 else:
-                    correction_length = None
+                    print(sequence)
+                    print('Only 1bp replacements or replacements of equal length (before edit/after edit) are supported! Please check your input sequence.')
+                    raise ValueError
             else:
+                print(sequence)
+                print('Non DNA bases found in sequence! Please check your input sequence.')
                 raise ValueError
 
     if edited_base == '-':
@@ -464,7 +478,7 @@ def parallel_batch_analysis(inp_dir, inp_fname, out_dir, out_fname, num_proc_arg
                     run_processing_parallel(batchsequencedf, out_dir, out_fname, num_proc_arg, nicking, ngsprimer, run_ids=run_ids, combine_dfs=combine_dfs)
                 except ValueError:
                     # print('***\nLess than 100bp of flanking sequence or no PAM (NGG) found in proximity of edit. Skipping...\n***\n')
-                    print('***\n Error :( ...\n***\n')
+                    print('***\n Error :( Check your input format is compatible with PRIDICT! More information in input box on https://pridict.it/ ...\n***\n')
 
             else:
                 print('Please check your input-file! (Names not unique.')
