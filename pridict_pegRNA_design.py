@@ -473,6 +473,8 @@ def parallel_batch_analysis(inp_dir, inp_fname, out_dir, out_fname, num_proc_arg
             if len(batchsequencedf.sequence_name.unique()) == len(batchsequencedf.sequence_name):
                 print(f'... Designing pegRNAs for {len(batchsequencedf)} sequences ...')
                 try:
+                    # make sequence_name column to string even if there are only numbers
+                    batchsequencedf['sequence_name'] = batchsequencedf['sequence_name'].astype(str)
                     # print(num_proc_arg)
                     # print(inp_fname)
                     run_processing_parallel(batchsequencedf, out_dir, out_fname, num_proc_arg, nicking, ngsprimer, run_ids=run_ids, combine_dfs=combine_dfs)
