@@ -60,7 +60,7 @@ The easiest way to install and manage Python packages on various OS platforms is
   -  `--sequence-name`: name of the sequene (i.e. unique id for the sequence)
   -  `--sequence`: target sequence to edit in quotes (format: `"xxxxxxxxx(a/g)xxxxxxxxxx"`; minimum of 100 bases up and downstream of brackets are needed; put unchanged edit-flanking bases *outside* of brackets (e.g. xxxT(a/g)Cxxx instead of xxx(TAC/TGC)xxx)
   ####  Optional:
-  -  `--output-dir`: output directory where results are dumped on disk (default: `./predictions`)
+  -  `--output-dir`: output directory where results are dumped on disk (default: `./predictions`; directory must already exist before running)
   -  `--use-5folds`: Use all 5-folds trained models. Default is to use fold-1 model
   -  `--cores`: Number of cores to use for multiprocessing. Default value 0 uses all available cores.
   -  `--nicking`: Additionally, design nicking guides for edit (PE3) with DeepSpCas9 prediction.
