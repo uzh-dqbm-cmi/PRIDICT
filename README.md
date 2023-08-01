@@ -33,7 +33,7 @@ The easiest way to install and manage Python packages on various OS platforms is
     # activate the created environment
     conda activate pridict
     
-    	### ONLY FOR M1 Mac you need to additionally run the following conda install command (tensorflow): 
+    	### ONLY FOR M1 (or newer) Mac you need to additionally run the following conda install command (tensorflow): 
     	conda install conda-forge::tensorflow
     	###
 	
