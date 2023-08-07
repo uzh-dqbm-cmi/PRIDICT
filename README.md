@@ -35,7 +35,11 @@ The easiest way to install and manage Python packages on various OS platforms is
     
     	### ONLY FOR M1 (or newer) Mac you need to additionally run the following conda install command (tensorflow): 
     	conda install conda-forge::tensorflow
+    	# optional (only if encountering error with libiomp5.dylib on MacOS):
+    	pip uninstall numpy
+    	pip install numpy==1.22.1
     	###
+    	
 	
     # run desired PRIDICT command (manual or batch mode, described below)
     python pridict_pegRNA_design.py manual --sequence-name seq1 --sequence 'GCCTGGAGGTGTCTGGGTCCCTCCCCCACCCGACTACTTCACTCTCTGTCCTCTCTGCCCAGGAGCCCAGGATGTGCGAGTTCAAGTGGCTACGGCCGA(G/C)GTGCGAGGCCAGCTCGGGGGCACCGTGGAGCTGCCGTGCCACCTGCTGCCACCTGTTCCTGGACTGTACATCTCCCTGGTGACCTGGCAGCGCCCAGATGCACCTGCGAACCACCAGAATGTGGCCGC'
