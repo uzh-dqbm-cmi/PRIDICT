@@ -19,6 +19,7 @@ dependencies:
   - biopython>=1.78
   - primer3-py>=0.6.1
   - viennarna=2.5.1
+  - mkl-service
   # - pytorch-mutex=1.0
   - pip:
     - -e .
