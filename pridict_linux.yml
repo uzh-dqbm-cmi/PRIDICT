@@ -10,7 +10,7 @@ dependencies:
   - python>=3.8.5
   - numpy>=1.22.1
   - scipy>=1.7.3
-  - pandas>=1.4.3
+  - pandas>=1.4.3, <2.0.0
   - pytorch>=1.10.2
   - matplotlib
   - seaborn
@@ -19,9 +19,9 @@ dependencies:
   - biopython>=1.78
   - primer3-py>=0.6.1
   - viennarna=2.5.1
+  - mkl-service
   # - pytorch-mutex=1.0
-  - tensorflow-cpu==2.10.0
   - pip:
     - -e .
-
+    - tensorflow-cpu==2.10.0
 
