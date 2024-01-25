@@ -1,6 +1,9 @@
+📣 📣 📣  Update: Check out [**PRIDICT2.0**](https://github.com/uzh-dqbm-cmi/PRIDICT2/) from our updated study [here](https://www.biorxiv.org/content/10.1101/2023.10.09.561414v1). 📣 📣 📣 
+
 # PRIDICT: PRIme editing guide RNA preDICTion 
 
 ![PRIDICT logo](pridict_logo.png)
+
 
 For accessing Supplementary Files, click [here](https://github.com/uzh-dqbm-cmi/PRIDICT/tree/supplementary_files).
 
@@ -82,7 +85,6 @@ python pridict_pegRNA_design.py manual --sequence-name seq1 --sequence 'GCCTGGAG
   -  `--input-dir` : directory where the input csv file is found on disk
   -  `--output-dir`: directory on disk where to dump results (default: `./predictions`)
   -  `--output-fname`: output filename used for the saved results
-  -  `--combine-results`: Compile all results in one dataframe
   -  `--use-5folds`: Use all 5-folds trained models. Default is to use fold-1 model
   -  `--cores`: Number of cores to use for multiprocessing. Default value 0 uses all available cores.
   -  `--nicking`: Additionally, design nicking guides for edit (PE3) with DeepSpCas9 prediction.
